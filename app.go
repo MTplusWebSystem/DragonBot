@@ -85,6 +85,7 @@ func main() {
 				go func() {
 					bot.Handler("messages",func(event string) {
 						if bot.ChatID == id {
+							user := make([]string, 0)
 							if bot.ReplyMessageText == "Quantas horas:"{
 								horas, err := strconv.Atoi(bot.Text)
 								if err != nil {
@@ -101,6 +102,15 @@ func main() {
 								}
 								outputStr := string(output)
 								bot.SendMessages(outputStr)
+							}else if bot.ReplyMessageText == "Usuário:"{
+								user = append(user, bot.Text)
+								bot.SendMessages("Senha")
+								bot.ForceReplyToMessage(bot.MessageID + 1, "Senha:")
+							}else if bot.ReplyMessageText == "Senha:"{
+								user = append(user, bot.Text)
+                                bot.SendMessages("Limite")
+                                bot.ForceReplyToMessage(bot.MessageID + 1, "limite:")
+								fmt.Println(user)
 							}
 							
 						} else {
