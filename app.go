@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"os/exec"
+
 	"github.com/MTplusWebSystem/GoBotKit/botkit"
 )
 
@@ -80,6 +82,8 @@ func main() {
 						if bot.ChatID == id {
 							if bot.ReplyMessageText == "Quantas horas:"{
 								bot.SendMessages(fmt.Sprintf("Teste de %s horas",bot.Text))
+								cmd := exec.Command("php /opt/DragonCore/menu.php gerarteste "+bot.Text)
+								cmd.Run()
 							}
 						}else{
 							bot.SendMessages("Não tem permição para Utilizar esse bot!")
