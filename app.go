@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os/exec"
 	"strconv"
+	"time"
 
 	"github.com/MTplusWebSystem/GoBotKit/botkit"
 )
@@ -101,16 +102,13 @@ func main() {
 								outputStr := string(output)
 								bot.SendMessages(outputStr)
 							}
-							//user := make([]string, 0)
-							if bot.ReplyMessageText == "Usuário:" {
-								user := bot.Text
-								fmt.Println("Usuário:", user)
-							} 
+							
 						} else {
 							bot.SendMessages("Não tem permissão para utilizar esse bot!")
 						}
 					})
 				}()
+				time.Sleep( 1 * time.Second)
 		}
 	}
 }
