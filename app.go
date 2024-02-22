@@ -104,11 +104,11 @@ func main() {
 							user := make([]string, 0)
 							if bot.ReplyMessageText == "Usuário:" {
 								user = append(user,bot.Text)
-								fmt.Println(bot.ReplyMessageText)
 								bot.SendMessages("Senha:")
 							}
+							fmt.Println(bot.ReplyMessageText)
 							if event == "Senha:"{
-								bot.ForceReplyToMessage(bot.MessageID - 1,":")
+								bot.ForceReplyToMessage(bot.MessageID,":")
 								user = append(user,bot.Text)
 								bot.SendMessages("Limite:")
 							} else if event == "Limite:"{
