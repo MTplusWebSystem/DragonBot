@@ -56,7 +56,7 @@ func main() {
 								layout := map[string]interface{}{
 									"inline_keyboard": [][]map[string]interface{}{
 										{
-											{"text": "Criar Usúario", "callback_data": "!create_user"},
+											{"text": "Criar Usúario", "callback_data": "!CreateUser"},
 											{"text": "Gerar Teste", "callback_data": "!GenTeste"},
 										},
 										{
@@ -86,7 +86,6 @@ func main() {
 					bot.Handler("messages",func(event string) {
 						if bot.ChatID == id {
 							if bot.ReplyMessageText == "Quantas horas:"{
-								bot.SendMessages(fmt.Sprintf("Teste de %s horas", bot.Text))
 								horas, err := strconv.Atoi(bot.Text)
 								if err != nil {
 									fmt.Println("Erro ao converter horas:", err)
