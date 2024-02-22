@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os/exec"
+	"strconv"
 
 	"github.com/MTplusWebSystem/GoBotKit/botkit"
 )
@@ -81,16 +82,28 @@ func main() {
 					bot.Handler("messages",func(event string) {
 						if bot.ChatID == id {
 							if bot.ReplyMessageText == "Quantas horas:"{
-								bot.SendMessages(fmt.Sprintf("Teste de %s horas",bot.Text))
-								cmd := exec.Command("php /opt/DragonCore/menu.php gerarteste "+bot.Text)
-								cmd.Run()
+								bot.SendMessages(fmt.Sprintf("Teste de %s horas", bot.Text))
+								horas, err := strconv.Atoi(bot.Text)
+								if err != nil {
+									fmt.Println("Erro ao converter horas:", err)
+									return
+								}
+								calc := 60 * horas
+								cmd := exec.Command("php", "/opt/DragonCore/menu.php", "gerarteste", strconv.Itoa(calc))
+
+								output, err := cmd.Output()
+								if err != nil {
+									fmt.Println("Erro ao executar o comando:", err)
+									return
+								}
+								outputStr := string(output)
+								fmt.Println("Saída do comando:", outputStr)
 							}
-						}else{
-							bot.SendMessages("Não tem permição para Utilizar esse bot!")
+						} else {
+							bot.SendMessages("Não tem permissão para utilizar esse bot!")
 						}
 					})
 				}()
-			 
 		}
 	}
 }
