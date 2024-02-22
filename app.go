@@ -22,7 +22,7 @@ func main() {
 	bot := botkit.BotInit{
 		Token: token,
 	}
-
+	user := make([]string, 0)
 
 	for {
 		if bot.ReceiveData(){
@@ -32,7 +32,6 @@ func main() {
 							if event == "!GenTeste"{
 								bot.ForceReplyToMessage(bot.QueryMessageID,"Quantas horas:")
 							}else if event == "!create_user"{
-								bot.SendMessages("Usuário")
 								bot.ForceReplyToMessage(bot.QueryMessageID,"Usuário:")
 							}
 						}else{
@@ -85,7 +84,7 @@ func main() {
 				go func() {
 					bot.Handler("messages",func(event string) {
 						if bot.ChatID == id {
-							user := make([]string, 0)
+							
 							if bot.ReplyMessageText == "Quantas horas:"{
 								horas, err := strconv.Atoi(bot.Text)
 								if err != nil {
@@ -109,8 +108,12 @@ func main() {
 							}else if bot.ReplyMessageText == "Senha:"{
 								user = append(user, bot.Text)
                                 bot.SendMessages("Limite")
-                                bot.ForceReplyToMessage(bot.MessageID + 1, "limite:")
-								fmt.Println(user)
+                                bot.ForceReplyToMessage(bot.MessageID + 1, "Limite:")
+							}else if bot.ReplyMessageText == "Limite:"{
+								user = append(user, bot.Text)
+                                bot.SendMessages("Data")
+                                bot.ForceReplyToMessage(bot.MessageID + 1, "Data:")
+                                fmt.Println(user)
 							}
 							
 						} else {
