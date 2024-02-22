@@ -97,7 +97,7 @@ func main() {
 									return
 								}
 								outputStr := string(output)
-								fmt.Println("Saída do comando:", outputStr)
+								bot.SendMessages(outputStr)
 							}
 						} else {
 							bot.SendMessages("Não tem permissão para utilizar esse bot!")
