@@ -107,19 +107,19 @@ func main() {
 								bot.SendMessages("Senha:")
 							}
 							fmt.Println(bot.ReplyMessageText)
-							if event == "Senha:"{
+							
 								bot.ForceReplyToMessage(bot.MessageID,":")
 								user = append(user,bot.Text)
 								bot.SendMessages("Limite:")
-							} else if event == "Limite:"{
+							
 								bot.ForceReplyToMessage(bot.MessageID ,":")
 								user = append(user,bot.Text)
 								bot.SendMessages("Data:")
-							} else if event == "Data:"{
+							
 								bot.ForceReplyToMessage(bot.MessageID,":")
 								user = append(user,bot.Text)
 								fmt.Println(user)
-							}
+							
 						} else {
 							bot.SendMessages("Não tem permissão para utilizar esse bot!")
 						}
