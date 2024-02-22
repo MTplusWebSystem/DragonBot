@@ -33,7 +33,7 @@ func main() {
 								bot.ForceReplyToMessage(bot.QueryMessageID,"Quantas horas:")
 							}else if event == "!create_user"{
 								bot.SendMessages("Usuário")
-								bot.ForceReplyToMessage(bot.QueryMessageID + 1,":")
+								bot.ForceReplyToMessage(bot.QueryMessageID,"Usuário:")
 							}
 						}else{
 							bot.SendMessages("Não tem permição para Utilizar esse bot!")
