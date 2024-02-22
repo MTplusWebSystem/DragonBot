@@ -9,10 +9,10 @@ func main() {
 	var token string
 	var id int
 
-	fmt.Println("Token:")
+	fmt.Print("Token:")
 	fmt.Scan(&token)
 
-	fmt.Println("ID:")
+	fmt.Print("ID:")
 	fmt.Scan(&id)
 
 	bot := botkit.BotInit{
