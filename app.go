@@ -101,7 +101,7 @@ func main() {
 								outputStr := string(output)
 								bot.SendMessages(outputStr)
 							}
-							user := make([]string, 0)
+							//user := make([]string, 0)
 							if bot.ReplyMessageText == "Usuário:" {
 								user := bot.Text
 								bot.ForceReplyToMessage(bot.MessageID, "Senha:")
