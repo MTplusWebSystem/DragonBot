@@ -1,0 +1,11 @@
+#!/bin/bash
+
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0 >> /dev/null
+
+source "$HOME/.asdf/asdf.sh"
+source "$HOME/.asdf/completions/asdf.bash"
+
+asdf plugin add golang https://github.com/asdf-community/asdf-golang.git
+
+asdf install golang latest >> /dev/null
+asdf global golang latest >> /dev/null
