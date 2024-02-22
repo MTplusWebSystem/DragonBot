@@ -104,6 +104,7 @@ func main() {
 							user := make([]string, 0)
 							if bot.ReplyMessageText == "Usuário:" {
 								user = append(user,bot.Text)
+								fmt.Println(bot.ReplyMessageText)
 								bot.SendMessages("Senha:")
 							}
 							if event == "Senha:"{
