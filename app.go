@@ -30,6 +30,8 @@ func main() {
 						if bot.ChatID == id {
 							if event == "!GenTeste"{
 								bot.ForceReplyToMessage(bot.QueryMessageID,"Quantas horas:")
+							}else if event == "!create_user"{
+								bot.ForceReplyToMessage(bot.QueryMessageID,"Usúrio: ")
 							}
 						}else{
 							bot.SendMessages("Não tem permição para Utilizar esse bot!")
@@ -52,7 +54,7 @@ func main() {
 								layout := map[string]interface{}{
 									"inline_keyboard": [][]map[string]interface{}{
 										{
-											{"text": "Criar Usúario", "callback_data": "!suporte"},
+											{"text": "Criar Usúario", "callback_data": "!create_user"},
 											{"text": "Gerar Teste", "callback_data": "!GenTeste"},
 										},
 										{
@@ -98,6 +100,16 @@ func main() {
 								}
 								outputStr := string(output)
 								bot.SendMessages(outputStr)
+							}
+							user := make([]string, 0)
+							if bot.ReplyMessageText == "Usúrio: " {
+								user = append(user,bot.Text)
+								bot.ForceReplyToMessage(bot.MessageID,"Senha: ")
+								user = append(user,bot.Text)
+								bot.ForceReplyToMessage(bot.MessageID,"Limite: ")
+								user = append(user,bot.Text)
+								bot.ForceReplyToMessage(bot.MessageID,"Data: ")
+								fmt.Println(user)
 							}
 						} else {
 							bot.SendMessages("Não tem permissão para utilizar esse bot!")
