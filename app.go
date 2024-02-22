@@ -31,7 +31,7 @@ func main() {
 							if event == "!GenTeste"{
 								bot.ForceReplyToMessage(bot.QueryMessageID,"Quantas horas:")
 							}else if event == "!create_user"{
-								bot.ForceReplyToMessage(bot.QueryMessageID,"Usúrio: ")
+								bot.ForceReplyToMessage(bot.QueryMessageID,"Usuário:")
 							}
 						}else{
 							bot.SendMessages("Não tem permição para Utilizar esse bot!")
@@ -102,13 +102,13 @@ func main() {
 								bot.SendMessages(outputStr)
 							}
 							user := make([]string, 0)
-							if bot.ReplyMessageText == "Usúrio: " {
+							if bot.ReplyMessageText == "Usuário:" {
 								user = append(user,bot.Text)
-								bot.ForceReplyToMessage(bot.MessageID,"Senha: ")
+								bot.ForceReplyToMessage(bot.MessageID,"Senha:")
 								user = append(user,bot.Text)
-								bot.ForceReplyToMessage(bot.MessageID,"Limite: ")
+								bot.ForceReplyToMessage(bot.MessageID,"Limite:")
 								user = append(user,bot.Text)
-								bot.ForceReplyToMessage(bot.MessageID,"Data: ")
+								bot.ForceReplyToMessage(bot.MessageID,"Data:")
 								fmt.Println(user)
 							}
 						} else {
