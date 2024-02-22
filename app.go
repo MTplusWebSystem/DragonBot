@@ -104,7 +104,6 @@ func main() {
 							//user := make([]string, 0)
 							if bot.ReplyMessageText == "Usuário:" {
 								user := bot.Text
-								bot.ForceReplyToMessage(bot.MessageID, "Senha:")
 								fmt.Println("Usuário:", user)
 							} 
 						} else {
