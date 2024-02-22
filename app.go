@@ -32,7 +32,8 @@ func main() {
 							if event == "!GenTeste"{
 								bot.ForceReplyToMessage(bot.QueryMessageID,"Quantas horas:")
 							}else if event == "!create_user"{
-								bot.ForceReplyToMessage(bot.QueryMessageID,"Usuário:")
+								bot.SendMessages("Usuário")
+								bot.ForceReplyToMessage(bot.QueryMessageID + 1,":")
 							}
 						}else{
 							bot.SendMessages("Não tem permição para Utilizar esse bot!")
