@@ -103,23 +103,21 @@ func main() {
 							}
 							user := make([]string, 0)
 							if bot.ReplyMessageText == "Usuário:" {
-								user = append(user,bot.Text)
-								bot.SendMessages("Senha:")
+								user := bot.Text
+								bot.ForceReplyToMessage(bot.MessageID, "Senha:")
+								fmt.Println("Usuário:", user)
+							} else if bot.ReplyMessageText == "Senha:" {
+								senha := bot.Text
+								bot.ForceReplyToMessage(bot.MessageID, "Limite:")
+								fmt.Println("Senha:", senha)
+							} else if bot.ReplyMessageText == "Limite:" {
+								limite := bot.Text
+								bot.ForceReplyToMessage(bot.MessageID, "Data:")
+								fmt.Println("Limite:", limite)
+							} else if bot.ReplyMessageText == "Data:" {
+								data := bot.Text
+								fmt.Println("Data:", data)
 							}
-							fmt.Println(bot.ReplyMessageText)
-							
-								bot.ForceReplyToMessage(bot.MessageID,":")
-								user = append(user,bot.Text)
-								bot.SendMessages("Limite:")
-							
-								bot.ForceReplyToMessage(bot.MessageID ,":")
-								user = append(user,bot.Text)
-								bot.SendMessages("Data:")
-							
-								bot.ForceReplyToMessage(bot.MessageID,":")
-								user = append(user,bot.Text)
-								fmt.Println(user)
-							
 						} else {
 							bot.SendMessages("Não tem permissão para utilizar esse bot!")
 						}
