@@ -1,11 +1,19 @@
 #!/bin/bash
 
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0 >> /dev/null
-
-source "$HOME/.asdf/asdf.sh"
-source "$HOME/.asdf/completions/asdf.bash"
-
-asdf plugin add golang https://github.com/asdf-community/asdf-golang.git
-
-asdf install golang latest >> /dev/null
-asdf global golang latest >> /dev/null
+echo -e "\e[1;33m 
+Instale para sua arquitetura\e[1;35m
+1 :x86
+2 :arm
+\e[m
+"
+read res
+if [ $res == 1 ];
+then
+    wget https://go.dev/dl/go1.22.0.linux-386.tar.gz
+    rm -rf /usr/local/go && tar -C /usr/local -xzf go1.22.0.linux-386.tar.gz
+    export PATH=$PATH:/usr/local/go/bin
+else
+    wget https://go.dev/dl/go1.22.0.linux-arm64.tar.gz
+    rm -rf /usr/local/go && tar -C /usr/local -xzf go1.22.0.linux-amd64.tar.gz
+    export PATH=$PATH:/usr/local/go/bin
+fi
