@@ -105,13 +105,18 @@ func main() {
 							if bot.ReplyMessageText == "Usuário:" {
 								user = append(user,bot.Text)
 								bot.SendMessages("Senha:")
+							}
+							if event == "Senha:"{
 								bot.ForceReplyToMessage(bot.MessageID,"")
 								user = append(user,bot.Text)
 								bot.SendMessages("Limite:")
+							} else if event == "Limite:"{
 								bot.ForceReplyToMessage(bot.MessageID,"")
 								user = append(user,bot.Text)
 								bot.SendMessages("Data:")
+							} else if event == "Data:"{
 								bot.ForceReplyToMessage(bot.MessageID,"")
+								user = append(user,bot.Text)
 								fmt.Println(user)
 							}
 						} else {
