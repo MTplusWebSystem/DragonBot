@@ -162,9 +162,11 @@ func main() {
 									if dataStore.NewData == true{
 										newdate = append(newdate, bot.Text)
                                         bot.ForceReply("Nova data:")
+										dataStore.NewData = false
 									}else if dataStore.NewLimiter == true{
 										newdate = append(newdate, bot.Text)
                                         bot.ForceReply("Novo limite:")
+										dataStore.NewLimiter = false
 									}else{
 										cmd := exec.Command("php", "/opt/DragonCore/menu.php", "deluser", bot.Text)
 										cmd.Run()
