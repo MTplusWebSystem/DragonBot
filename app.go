@@ -20,6 +20,8 @@ alterar validade [php /opt/DragonCore/menu.php alterardata $usuario $validade]
 
 alterar limite [php /opt/DragonCore/menu.php uplimit $usuario $limite]
 
+alterar senhs [php /opt/DragonCore/menu.php uppass $usuario $senha ]
+
 deletar usuario [ php /opt/DragonCore/menu.php deluser $usuario ]
 
 
@@ -61,6 +63,9 @@ func main() {
 								case "!AlterarDT":
 									bot.ForceReply("Nome do Usuário:")
 									dataStore.NewData = true
+								case "!AlterarSH":
+									bot.ForceReply("Nome do Usuário:")
+                                    dataStore.NewPass = true
 								case "!Relatorio":
 									cmd := exec.Command("php", "/opt/DragonCore/menu.php", "relatoriouser")
 
@@ -167,7 +172,11 @@ func main() {
 										newdate = append(newdate, bot.Text)
                                         bot.ForceReply("Novo limite:")
 										dataStore.NewLimiter = false
-									}else{
+									}else if dataStore.NewPass == true{
+										newdate = append(newdate, bot.Text)
+                                        bot.ForceReply("Nova senha:")
+                                        dataStore.NewPass = false
+									}else {
 										cmd := exec.Command("php", "/opt/DragonCore/menu.php", "deluser", bot.Text)
 										cmd.Run()
 										bot.SendMessages("Usuário deletado com sucesso")
@@ -181,6 +190,10 @@ func main() {
 									cmd := exec.Command("php", "/opt/DragonCore/menu.php", "uplimit",newdate[0], bot.Text)
 									cmd.Run()
 									bot.SendMessages("Limite alterado com sucesso")
+								case "Nova senha:":
+									cmd := exec.Command("php", "/opt/DragonCore/menu.php", "uppass",newdate[0], bot.Text)
+									cmd.Run()
+									bot.SendMessages("Senha alterada com sucesso")
                             }
 						} else {
 							bot.SendMessages("Não tem permissão para utilizar esse bot!")
