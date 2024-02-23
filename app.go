@@ -15,6 +15,12 @@ gerar teste   [ php /opt/DragonCore/menu.php gerarteste $validade ]
 criar usuário [php /opt/DragonCore/menu.php criaruser $validade $usuario $senha $limite ]
 
 criar relatório [php /opt/DragonCore/menu.php relatoriouser]
+
+alterar  validade [php /opt/DragonCore/menu.php alterardata $usuario $validade]
+
+deletar usuario [ php /opt/DragonCore/menu.php deluser $usuario ]
+
+
 */
 func main() {
 	var token string
@@ -30,7 +36,7 @@ func main() {
 		Token: token,
 	}
 	user := make([]string, 0)
-
+	newdate := make([]string, 0)
 	for {
 		if bot.ReceiveData(){
 				go func() {
@@ -50,6 +56,10 @@ func main() {
 								}
 								outputStr := string(output)
 								bot.SendMessages(outputStr)
+							}else if event == "!deletar"{
+								bot.ForceReply("Nome do usuário:")
+							} else if event == "!AlterarDT"{
+								bot.ForceReply("Nova data:")
 							}
 						}else{
 							bot.SendMessages("Não tem permição para Utilizar esse bot!")
@@ -76,12 +86,12 @@ func main() {
 											{"text": "Gerar Teste", "callback_data": "!GenTeste"},
 										},
 										{
-											{"text": "Alterar Senha", "callback_data": "!suporte"},
-											{"text": "Alterar Limite", "callback_data": "!painel"},
+											{"text": "Alterar Senha", "callback_data": "!AlterarSH"},
+											{"text": "Alterar Limite", "callback_data": "!AlterarLM"},
 										},
 										{
-											{"text": "Alterar Data", "callback_data": "!suporte"},
-											{"text": "Remover", "callback_data": "!painel"},
+											{"text": "Alterar Data", "callback_data": "!AlterarDT"},
+											{"text": "Remover", "callback_data": "!deleterar"},
 										},
 										{
 											{"text": "Relatório", "callback_data": "!relatorio"},
@@ -135,6 +145,17 @@ func main() {
 								cmd := exec.Command("php", "/opt/DragonCore/menu.php", "criaruser", user[3], user[0], user[1] , user[2] )
 								cmd.Run()
 								bot.SendMessages("Usuario criados com sucesso")
+							}else if bot.ReplyMessageText == "Nome do Usuário:"{
+								cmd := exec.Command("php", "/opt/DragonCore/menu.php", "deluser", bot.Text)
+								cmd.Run()
+                                bot.SendMessages("Usuário deletado com sucesso")
+							}else if bot.ReplyMessageText == "Nova data:"{
+								newdate = append(newdate, bot.Text)
+								bot.ForceReply("Nome do usuário")
+								newdate = append(newdate, bot.Text)
+                                cmd := exec.Command("php", "/opt/DragonCore/menu.php", "alterardata", newdate[1], newdate[0])
+                                cmd.Run()
+                                bot.SendMessages("Data alterada com sucesso")
 							}
 							
 						} else {
