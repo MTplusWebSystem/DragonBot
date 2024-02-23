@@ -31,7 +31,7 @@ func main() {
 						if bot.ChatID == id {
 							if event == "!GenTeste"{
 								bot.ForceReply("Quantas horas:")
-							}else if event == "!create_user"{
+							}else if event == "!CreateUser"{
 								bot.ForceReply("Usuário:")
 							}
 						}else{
