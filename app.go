@@ -129,11 +129,12 @@ func main() {
                                 bot.ForceReply("Limite:")
 							}else if bot.ReplyMessageText == "Limite:"{
 								user = append(user, bot.Text)
-                                bot.ForceReply("Data:")
-							}else if bot.ReplyMessageText == "Data:"{
-								
+                                bot.ForceReply("Data em dias:")
+							}else if bot.ReplyMessageText == "Data em dias:"{
 								user = append(user, bot.Text)
-								fmt.Println(user)
+								cmd := exec.Command("php", "/opt/DragonCore/menu.php", "criaruser", user[3], user[0], user[1] , user[2] )
+								cmd.Run()
+								bot.SendMessages("Usuario criados com sucesso")
 							}
 							
 						} else {
