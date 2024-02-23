@@ -16,7 +16,9 @@ criar usuário [php /opt/DragonCore/menu.php criaruser $validade $usuario $senha
 
 criar relatório [php /opt/DragonCore/menu.php relatoriouser]
 
-alterar  validade [php /opt/DragonCore/menu.php alterardata $usuario $validade]
+alterar validade [php /opt/DragonCore/menu.php alterardata $usuario $validade]
+
+alterar limite [php /opt/DragonCore/menu.php uplimit $usuario $limite]
 
 deletar usuario [ php /opt/DragonCore/menu.php deluser $usuario ]
 
@@ -54,6 +56,9 @@ func main() {
 								case "!CreateUser":
 									bot.ForceReply("Usuário:")
 								case "!AlterarLM":
+									bot.ForceReply("Nome do usuário:")
+									dataStore.NewLimiter = true
+								case "!AlterarDT":
 									bot.ForceReply("Nome do usuário:")
 									dataStore.NewData = true
 								case "!Relatorio":
@@ -157,14 +162,23 @@ func main() {
 									if dataStore.NewData == true{
 										newdate = append(newdate, bot.Text)
                                         bot.ForceReply("Nova data:")
+									}else if dataStore.NewLimiter == true{
+										newdate = append(newdate, bot.Text)
+                                        bot.ForceReply("Novo limite:")
+									}else{
+										cmd := exec.Command("php", "/opt/DragonCore/menu.php", "deluser", bot.Text)
+										cmd.Run()
+										bot.SendMessages("Usuário deletado com sucesso")
 									}
-									cmd := exec.Command("php", "/opt/DragonCore/menu.php", "deluser", bot.Text)
-									cmd.Run()
-									bot.SendMessages("Usuário deletado com sucesso")
+
 								case "Nova data:":
 									cmd := exec.Command("php", "/opt/DragonCore/menu.php", "alterardata",newdate[0], bot.Text)
 									cmd.Run()
 									bot.SendMessages("Data alterada com sucesso")
+								case "Novo limite:":
+									cmd := exec.Command("php", "/opt/DragonCore/menu.php", "uplimit",newdate[0], bot.Text)
+									cmd.Run()
+									bot.SendMessages("Limite alterado com sucesso")
                             }
 						} else {
 							bot.SendMessages("Não tem permissão para utilizar esse bot!")
