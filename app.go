@@ -30,9 +30,9 @@ func main() {
 					bot.Handler("callback_query", func(event string) {
 						if bot.ChatID == id {
 							if event == "!GenTeste"{
-								bot.ForceReplyToMessage(bot.QueryMessageID,"Quantas horas:")
+								bot.ForceReply("Quantas horas:")
 							}else if event == "!create_user"{
-								bot.ForceReplyToMessage(bot.QueryMessageID,"Usuário:")
+								bot.ForceReply("Usuário:")
 							}
 						}else{
 							bot.SendMessages("Não tem permição para Utilizar esse bot!")
@@ -103,17 +103,16 @@ func main() {
 								bot.SendMessages(outputStr)
 							}else if bot.ReplyMessageText == "Usuário:"{
 								user = append(user, bot.Text)
-								bot.SendMessages("Senha")
-								bot.ForceReplyToMessage(bot.MessageID + 1, "Senha:")
+								bot.ForceReply("Senha:")
 							}else if bot.ReplyMessageText == "Senha:"{
 								user = append(user, bot.Text)
-                                bot.SendMessages("Limite")
-                                bot.ForceReplyToMessage(bot.MessageID + 1, "Limite:")
+                                bot.ForceReply("Limite:")
 							}else if bot.ReplyMessageText == "Limite:"{
 								user = append(user, bot.Text)
-                                bot.SendMessages("Data")
-                                bot.ForceReplyToMessage(bot.MessageID + 1, "Data:")
-                                fmt.Println(user)
+                                bot.ForceReply("Data:")
+							}else if bot.ReplyMessageText == "Data:"{
+								user = append(user, bot.Text)
+								fmt.Println(user)
 							}
 							
 						} else {
