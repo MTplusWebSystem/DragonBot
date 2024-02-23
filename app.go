@@ -117,8 +117,7 @@ func main() {
 								case "Usuário:":
 									user = append(user, bot.Text)
 									bot.ForceReply("Senha:")
-                                case "Gerar Teste":
-                                    bot.ForceReply("Quantas horas:")
+                                case "Quantas horas:":
 									horas, err := strconv.Atoi(bot.Text)
 									if err != nil {
 										fmt.Println("Erro ao converter horas:", err)
