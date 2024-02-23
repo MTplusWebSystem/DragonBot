@@ -59,8 +59,20 @@ func main() {
 							}else if event == "!deletar"{
 								bot.ForceReply("Nome do usuário:")
 							} else if event == "!AlterarDT"{
-								bot.ForceReply("Nova data:")
+								bot.ForceReply("Nome do usuário")
+								if bot.ReplyMessageText == "Nome do usuário"{
+									newdate = append(newdate, bot.Text)
+								    bot.ForceReply("Nova data:")
+									if bot.ReplyMessageText == "Nova data:"{
+										newdate = append(newdate, bot.Text)
+										cmd := exec.Command("php", "/opt/DragonCore/menu.php", "alterardata", newdate[1], newdate[0])
+										cmd.Run()
+										bot.SendMessages("Data alterada com sucesso")
+									}
+								}
 							}
+								
+                               
 						}else{
 							bot.SendMessages("Não tem permição para Utilizar esse bot!")
 						}
@@ -149,15 +161,7 @@ func main() {
 								cmd := exec.Command("php", "/opt/DragonCore/menu.php", "deluser", bot.Text)
 								cmd.Run()
                                 bot.SendMessages("Usuário deletado com sucesso")
-							}else if bot.ReplyMessageText == "Nova data:"{
-								newdate = append(newdate, bot.Text)
-								bot.ForceReply("Nome do usuário")
-								newdate = append(newdate, bot.Text)
-                                cmd := exec.Command("php", "/opt/DragonCore/menu.php", "alterardata", newdate[1], newdate[0])
-                                cmd.Run()
-                                bot.SendMessages("Data alterada com sucesso")
 							}
-							
 						} else {
 							bot.SendMessages("Não tem permissão para utilizar esse bot!")
 						}
