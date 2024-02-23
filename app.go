@@ -22,6 +22,11 @@ deletar usuario [ php /opt/DragonCore/menu.php deluser $usuario ]
 
 
 */
+type DataStorage struct{
+	NewData	bool
+	NewPass bool
+	NewLimiter bool
+}
 func main() {
 	var token string
 	var id int
@@ -31,12 +36,13 @@ func main() {
 
 	fmt.Print("ID:")
 	fmt.Scan(&id)
-
+	dataStore := DataStorage{}
 	bot := botkit.BotInit{
 		Token: token,
 	}
+
 	user := make([]string, 0)
-	//newdate := make([]string, 0)
+	newdate := make([]string, 0)
 	for {
 		if bot.ReceiveData(){
 				go func() {
@@ -47,7 +53,10 @@ func main() {
 									bot.ForceReply("Quantas horas:")
 								case "!CreateUser":
 									bot.ForceReply("Usuário:")
-								case "!relatorio":
+								case "!AlterarLM":
+									bot.ForceReply("Nome do usuário:")
+									dataStore.NewData = true
+								case "!Relatorio":
 									cmd := exec.Command("php", "/opt/DragonCore/menu.php", "relatoriouser")
 
 									output, err := cmd.Output()
@@ -90,10 +99,10 @@ func main() {
 											},
 											{
 												{"text": "Alterar Data", "callback_data": "!AlterarDT"},
-												{"text": "Remover", "callback_data": "!deleterar"},
+												{"text": "Remover", "callback_data": "!Deletar"},
 											},
 											{
-												{"text": "Relatório", "callback_data": "!relatorio"},
+												{"text": "Relatório", "callback_data": "!Relatorio"},
 											},
 										},
 									}
@@ -145,9 +154,17 @@ func main() {
 									cmd.Run()
 									bot.SendMessages("Usuario criados com sucesso")
                                 case "Nome do Usuário:":
+									if dataStore.NewData == true{
+										newdate = append(newdate, bot.Text)
+                                        bot.ForceReply("Nova data:")
+									}
 									cmd := exec.Command("php", "/opt/DragonCore/menu.php", "deluser", bot.Text)
 									cmd.Run()
 									bot.SendMessages("Usuário deletado com sucesso")
+								case "Nova data:":
+									cmd := exec.Command("php", "/opt/DragonCore/menu.php", "alterardata",newdate[0], bot.Text)
+									cmd.Run()
+									bot.SendMessages("Data alterada com sucesso")
                             }
 						} else {
 							bot.SendMessages("Não tem permissão para utilizar esse bot!")
