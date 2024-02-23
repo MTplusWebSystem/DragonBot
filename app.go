@@ -8,7 +8,14 @@ import (
 
 	"github.com/MTplusWebSystem/GoBotKit/botkit"
 )
+/*
 
+gerar teste   [ php /opt/DragonCore/menu.php gerarteste $validade ]
+
+criar usuário [php /opt/DragonCore/menu.php criaruser $validade $usuario $senha $limite ]
+
+criar relatório [php /opt/DragonCore/menu.php relatoriouser]
+*/
 func main() {
 	var token string
 	var id int
@@ -33,6 +40,16 @@ func main() {
 								bot.ForceReply("Quantas horas:")
 							}else if event == "!CreateUser"{
 								bot.ForceReply("Usuário:")
+							}else if event == "!relatorio"{
+								cmd := exec.Command("php", "/opt/DragonCore/menu.php", "relatoriouser")
+
+								output, err := cmd.Output()
+								if err != nil {
+									fmt.Println("Erro ao executar o comando:", err)
+									return
+								}
+								outputStr := string(output)
+								bot.SendMessages(outputStr)
 							}
 						}else{
 							bot.SendMessages("Não tem permição para Utilizar esse bot!")
@@ -65,6 +82,9 @@ func main() {
 										{
 											{"text": "Alterar Data", "callback_data": "!suporte"},
 											{"text": "Remover", "callback_data": "!painel"},
+										},
+										{
+											{"text": "Relatório", "callback_data": "!relatorio"},
 										},
 									},
 								}
@@ -111,6 +131,7 @@ func main() {
 								user = append(user, bot.Text)
                                 bot.ForceReply("Data:")
 							}else if bot.ReplyMessageText == "Data:"{
+								
 								user = append(user, bot.Text)
 								fmt.Println(user)
 							}
