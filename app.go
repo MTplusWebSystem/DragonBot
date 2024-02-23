@@ -56,10 +56,10 @@ func main() {
 								case "!CreateUser":
 									bot.ForceReply("Usuário:")
 								case "!AlterarLM":
-									bot.ForceReply("Nome do usuário:")
+									bot.ForceReply("Nome do Usuário:")
 									dataStore.NewLimiter = true
 								case "!AlterarDT":
-									bot.ForceReply("Nome do usuário:")
+									bot.ForceReply("Nome do Usuário:")
 									dataStore.NewData = true
 								case "!Relatorio":
 									cmd := exec.Command("php", "/opt/DragonCore/menu.php", "relatoriouser")
