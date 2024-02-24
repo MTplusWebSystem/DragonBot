@@ -1,0 +1,14 @@
+[
+    {
+        "username":"minato",
+        "password":"<PASSWORD>",
+        "date":"12/12/2015",
+        "limite":4
+    },
+    {
+        "username":"minato2",
+        "password":"<PASSWORD>",
+        "date":"12/12/2015",
+        "limite":3
+    }
+]

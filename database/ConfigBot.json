@@ -1,0 +1,10 @@
+{
+    "principal":{
+        "token":"key",
+        "userid":"-234235"
+    },
+    "loja":{
+        "token":"key",
+        "userid":"-234235"
+    }
+}

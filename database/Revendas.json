@@ -1,0 +1,22 @@
+{
+    "ativos":[
+        {
+            "id":1,
+            "Create":"<NAME>",
+            "descripcion":"<Descripcion>",
+            "precio":1000,
+            "cantidad":100,
+            "fecha":"12/12/2015"
+        }
+    ],
+    "inativos":[
+        {
+            "id":1,
+            "nombre":"<NAME>",
+            "descripcion":"<Descripcion>",
+            "precio":1000,
+            "cantidad":100,
+            "fecha":"12/12/2015"
+        }
+    ]
+}
